@@ -1,0 +1,58 @@
+package CodeSoftTasks;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import java.util.Random;
+
+public class GuessTheNum {
+    public static void main(String[] args) {
+        Random rand = new Random();
+        int randNum = rand.nextInt(100);
+        String choice,s1;
+        int count=6;
+
+        //System.out.println("(Just For Varification) Random no:"+randNum);
+
+        do {
+            count--;
+            System.out.println("Enter Your Guess Between 1-100,You have "+count+" trial");
+            Scanner kb = new Scanner(System.in);
+            try{
+                    int num = kb.nextInt();
+                    if (num >= 1 && num <= 100) {
+                        if (num == randNum) {
+                            System.out.println("Congrats!Your Guess is Correct.");
+                            System.out.println("Your Score of gussing According to remaining"+ count +"trial is:"+(count*10)+"  Out of 50");
+                            System.exit(0);
+                        } else {
+                            System.out.println("Sorry!Your guess is wrong Try Again");
+                        }
+                    } else {
+                        System.out.println("O Oh! kindly guess number between 01-100 only");
+                    }
+            }catch(InputMismatchException ex1){
+                System.out.println("Kindly Enter Number only");
+                System.exit(0);
+
+            }
+
+            if(count==0)
+            {
+                System.out.println("Your 5 trial has Finished! Better Luck Next Time");
+                System.out.println("Your Score of gussing is:00 out of 50");
+                System.exit(0);
+            }
+            else {
+                System.out.println("Do you want to guess again (type yes or no)");
+            }
+
+            choice = kb.next();
+            s1 = "Yes";
+
+        }while(choice.equalsIgnoreCase(s1) && count>0);
+
+
+        System.out.println("Correct Number is: "+randNum);
+
+    }
+}
